@@ -73,8 +73,8 @@ class WebGLTest {
       print(gl.getShaderInfoLog(fs));
     }
 
-    if (!this.gl.getProgramParameter(program, WebGLRenderingContext.LINK_STATUS)) { 
-      print(this.gl.getProgramInfoLog(program));
+    if (!this.gl.getProgramParameter(p, WebGLRenderingContext.LINK_STATUS)) { 
+      print(this.gl.getProgramInfoLog(p));
     }
 
     this.program = p;
@@ -103,7 +103,8 @@ class WebGLTest {
     // set color
     WebGLUniformLocation uColor = gl.getUniformLocation(program, "uColor");
     // as defined in fragment shader source code, color is vector of 4 items
-    this.gl.uniform4fv(uColor, [this.foobar, this.foobar, 0.0, 1.0]);
+    Float32Array uVertices = new Float32Array.fromList([this.foobar, this.foobar, 0.0, 1.0]);
+    this.gl.uniform4fv(uColor, uVertices);
 
     // set position
     // WebGL knows we want to use 'vertices' for this because
